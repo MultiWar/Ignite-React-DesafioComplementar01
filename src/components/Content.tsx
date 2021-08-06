@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { api } from '../services/api';
 import { MovieCard } from './MovieCard';
 import '../styles/content.scss';
+import { memo } from 'react';
 
 interface GenreResponseProps {
   id: number;
@@ -24,7 +25,7 @@ interface ContentProps {
   selectedGenreId: number;
 }
 
-export function Content({selectedGenreId}: ContentProps) {
+const ContentComponent = ({selectedGenreId}: ContentProps) => {
   // Complete aqui
   const [selectedGenre, setSelectedGenre] = useState<GenreResponseProps>({} as GenreResponseProps);
   const [movies, setMovies] = useState<MovieProps[]>([]);
@@ -55,3 +56,6 @@ export function Content({selectedGenreId}: ContentProps) {
     </div>
   )
 }
+
+export const Content = memo(ContentComponent)
+
